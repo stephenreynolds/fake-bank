@@ -4,6 +4,7 @@ import { usd } from "../../shared/format";
 
 const Header = styled.header`
   --text-color: #eee;
+  --text-color-hover: #ddd;
 
   background: rgb(60, 127, 136);
   background: linear-gradient(135deg, rgba(60, 127, 136, 1) 0%, rgba(46, 74, 128, 1) 100%);
@@ -19,6 +20,11 @@ const Header = styled.header`
       font-weight: 600;
       margin: 1rem;
       vertical-align: middle;
+      
+      &:hover {
+        color: var(--text-color-hover);
+        transition: color 0.2s linear;
+      }
     }
 
     .brand-link a {
