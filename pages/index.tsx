@@ -2,15 +2,18 @@ import Head from 'next/head'
 import AccountCard from "../components/account/account-card";
 import AccountGroup from "../components/account/account-group";
 import AccountGroupContainer from "../components/account/account-group-container";
+import AccountHeader from "../components/account/account-header";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Head>
         <title>fakeBank</title>
         <meta name="description" content="A fake banking web app made with Next.js."/>
         <link rel="icon" href="/favicon.ico"/>
       </Head>
+
+      <AccountHeader totalValue={147300} />
 
       <AccountGroupContainer>
         <AccountGroup name="Bank accounts">
@@ -29,7 +32,7 @@ const Home = () => {
           <AccountCard name="Ext checking" balance={1000} accountNumber="0151" />
         </AccountGroup>
       </AccountGroupContainer>
-    </div>
+    </>
   );
 };
 
