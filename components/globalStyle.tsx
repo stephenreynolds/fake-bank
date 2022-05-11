@@ -15,6 +15,10 @@ export default createGlobalStyle`
     margin: 0;
     font-weight: 500;
   }
+  
+  .ml-1ch {
+    margin-left: 1ch;
+  }
 `;
 
 export const theme = {
