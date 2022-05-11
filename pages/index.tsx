@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import AccountCard from "../components/account/account-card";
+import AccountItem from "../components/account/account-item";
 import AccountGroup from "../components/account/account-group";
 import AccountGroupContainer from "../components/account/account-group-container";
 import AccountHeader from "../components/account/account-header";
@@ -17,19 +17,19 @@ const Home = () => {
 
       <AccountGroupContainer>
         <AccountGroup name="Bank accounts">
-          <AccountCard name="Checking" balance={1000} accountNumber="1234" />
-          <AccountCard name="Savings" balance={20000} accountNumber="5678" />
+          <AccountItem name="Checking" balance={1000} accountNumber="1234" />
+          <AccountItem name="Savings" balance={20000} accountNumber="5678" />
         </AccountGroup>
         <AccountGroup name="Credit cards">
-          <AccountCard name="fakeBank Credit Card" balance={300} accountNumber="9401" />
+          <AccountItem name="fakeBank Credit Card" balance={300} accountNumber="9401" />
         </AccountGroup>
         <AccountGroup name="Investing accounts">
-          <AccountCard name="Individual" balance={25000} accountNumber="4580" />
-          <AccountCard name="IRA" balance={100000} accountNumber="9844" />
+          <AccountItem name="Individual" balance={25000} accountNumber="4580" />
+          <AccountItem name="IRA" balance={100000} accountNumber="9844" />
         </AccountGroup>
 
         <AccountGroup name="External accounts">
-          <AccountCard name="Ext checking" balance={1000} accountNumber="0151" />
+          <AccountItem name="Ext checking" balance={1000} accountNumber="0151" />
         </AccountGroup>
       </AccountGroupContainer>
     </>

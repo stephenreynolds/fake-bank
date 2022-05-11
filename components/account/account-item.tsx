@@ -59,7 +59,7 @@ interface Props {
   accountNumber: string;
 }
 
-const AccountCard = ({ name, balance, accountNumber }: Props): JSX.Element => (
+const AccountItem = ({ name, balance, accountNumber }: Props): JSX.Element => (
   <AccountContainer>
     <div className="header">
       <AccountButton>{name} (...{accountNumber}) <FontAwesomeIcon icon={faAngleRight} /></AccountButton>
@@ -72,4 +72,4 @@ const AccountCard = ({ name, balance, accountNumber }: Props): JSX.Element => (
   </AccountContainer>
 );
 
-export default AccountCard;
+export default AccountItem;
