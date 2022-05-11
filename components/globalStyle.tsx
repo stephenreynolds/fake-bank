@@ -22,5 +22,14 @@ export default createGlobalStyle`
 `;
 
 export const theme = {
-
+  accent: "#3c7f88",
+  text: {
+    color: "#000"
+  },
+  header: {
+    text: {
+      color: "#eee",
+      hover: "#ddd"
+    }
+  }
 };

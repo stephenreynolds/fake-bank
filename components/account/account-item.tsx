@@ -5,6 +5,8 @@ import { usd } from "../../shared/format";
 import { Account } from "../../shared/mockdb";
 
 const AccountContainer = styled.div`
+  --accent-color: ${props => props.theme.accent};
+  
   .header {
     display: flex;
     justify-content: space-between;
@@ -14,8 +16,8 @@ const AccountContainer = styled.div`
       gap: 0.5rem;
 
       button {
-        color: blue;
-        border: 1px solid blue;
+        color: var(--accent-color);
+        border: 1px solid var(--accent-color);
         border-radius: 5px;
         background: none;
         padding: 0.25rem;
@@ -32,7 +34,9 @@ const AccountContainer = styled.div`
 `;
 
 const AccountButton = styled.button`
-  color: blue;
+  --accent-color: ${props => props.theme.accent};
+  
+  color: var(--accent-color);
   font-size: 1rem;
   font-weight: 600;
   border: none;

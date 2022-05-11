@@ -1,37 +1,43 @@
 import Head from 'next/head'
-import { useEffect, useState } from "react";
+import React from "react";
+import AccountHeader, { AccountHeaderContent } from "../components/account/account-header";
 import AccountItem from "../components/account/account-item";
 import AccountGroup from "../components/account/account-group";
 import AccountGroupContainer from "../components/account/account-group-container";
-import AccountHeader from "../components/account/account-header";
-import { getAccountByAccountNumber, getCurrentUser, User } from "../shared/mockdb";
+import { usd } from "../shared/format";
+import { getAccountByAccountNumber, getUserAccounts, User } from "../shared/mockdb";
 
-const Home = () => {
-  const [user, setUser] = useState<User>();
+interface Props {
+  user: User;
+}
 
-  useEffect(() => {
-    if (!user) {
-      setUser(getCurrentUser());
-    }
-  }, [user]);
+const Home = ({ user }: Props) => {
+  const getTotalValue = (): number => {
+    return getUserAccounts(user.id)
+      .map(account => account.balance)
+      .reduce((prev, next) => prev + next, 0);
+  };
 
   return (
     <>
       <Head>
-        <title>fakeBank</title>
-        <meta name="description" content="A fake banking web app made with Next.js."/>
-        <link rel="icon" href="/favicon.ico"/>
+        <title>fakeBank: Dashboard</title>
       </Head>
 
       {user ? (
         <>
-          <AccountHeader user={user}/>
+          <AccountHeader>
+            <AccountHeaderContent>
+              <h2>Total value: {usd.format(getTotalValue())}</h2>
+              <small>Net change: +420.00 (0.3%)</small>
+            </AccountHeaderContent>
+          </AccountHeader>
 
           <AccountGroupContainer>
             {user.accountGroups.map((group, i) => (
               <AccountGroup key={i} name={group.name}>
                 {group.accountNumbers.map((accountNumber, j) => (
-                  <AccountItem key={j} account={getAccountByAccountNumber(accountNumber)!} />
+                  <AccountItem key={j} account={getAccountByAccountNumber(accountNumber)!}/>
                 ))}
               </AccountGroup>
             ))}

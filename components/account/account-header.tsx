@@ -1,11 +1,10 @@
 import Link from "next/link";
+import React from "react";
 import styled from "styled-components";
-import { usd } from "../../shared/format";
-import { getUserAccounts, User } from "../../shared/mockdb";
 
 const Header = styled.header`
-  --text-color: #eee;
-  --text-color-hover: #ddd;
+  --text-color: ${props => props.theme.header.text.color};
+  --text-color-hover: ${props => props.theme.header.text.hover};
 
   background: rgb(60, 127, 136);
   background: linear-gradient(135deg, rgba(60, 127, 136, 1) 0%, rgba(46, 74, 128, 1) 100%);
@@ -32,29 +31,23 @@ const Header = styled.header`
       font-size: 1.5rem;
     }
   }
-
-  .container {
-    margin: 0 auto;
-    width: 50%;
-    padding: 1rem 0;
-    color: var(--text-color);
-  }
 `;
 
 interface Props {
-  user: User;
+  children?: React.ReactNode;
 }
 
-const AccountHeader = ({ user }: Props) => {
-  const getTotalValue = (): number => {
-    return getUserAccounts(user.id)
-      .map(account => account.balance)
-      .reduce((prev, next) => prev + next, 0);
-  };
+export const AccountHeaderContent = styled.div<{ width?: string }>`
+  margin: 0 auto;
+  width: ${props => props.width ?? "50%"};
+  padding: 1rem 0;
+  color: var(--text-color);
+`;
 
+const AccountHeader = ({ children }: Props) => {
   return (
     <Header>
-      <div className="header-links">
+      <nav className="header-links">
         <div className="brand-link">
           <Link href="/">
             <a>fakeBank</a>
@@ -71,11 +64,8 @@ const AccountHeader = ({ user }: Props) => {
             <a>Account</a>
           </Link>
         </div>
-      </div>
-      <div className="container">
-        <h2>Total value: {usd.format(getTotalValue())}</h2>
-        <small>Net change: +420.00 (0.3%)</small>
-      </div>
+      </nav>
+      {children}
     </Header>
   );
 };
