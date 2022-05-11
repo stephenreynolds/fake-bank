@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { usd } from "../../shared/format";
+import { Account } from "../../shared/mockdb";
 
 const AccountContainer = styled.div`
   .header {
@@ -54,21 +55,19 @@ const BalanceText = styled.span`
 `;
 
 interface Props {
-  name: string;
-  balance: number;
-  accountNumber: string;
+  account: Account;
 }
 
-const AccountItem = ({ name, balance, accountNumber }: Props): JSX.Element => (
+const AccountItem = ({ account }: Props): JSX.Element => (
   <AccountContainer>
     <div className="header">
-      <AccountButton>{name} (...{accountNumber}) <FontAwesomeIcon icon={faAngleRight} /></AccountButton>
+      <AccountButton>{account.name} (...{account.accountNumber}) <FontAwesomeIcon icon={faAngleRight} /></AccountButton>
       <div className="buttons">
         <button>Transfer money</button>
         <button>More <FontAwesomeIcon icon={faAngleDown}/></button>
       </div>
     </div>
-    <BalanceText>{usd.format(balance)}</BalanceText>
+    <BalanceText>{usd.format(account.balance)}</BalanceText>
   </AccountContainer>
 );
 
